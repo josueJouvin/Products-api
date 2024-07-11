@@ -12,7 +12,11 @@ export const createProduct =  async(req: Request, res: Response) => {
 
 export const getProducts = async (req: Request, res: Response) => {
     try {
-        const products = await Product.findAll()
+        const products = await Product.findAll({
+            order:[
+              ['id', "DESC"]
+            ]
+        })
         res.json({data: products})
     } catch (error) {
         console.log(error)
